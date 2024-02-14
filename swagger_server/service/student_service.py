@@ -23,7 +23,6 @@ def add(student=None):
     student.student_id = doc_id
     return student.student_id
 
-
 def get_by_id(student_id=None, subject=None):
     student = student_db.get(doc_id=int(student_id))
     if not student:
@@ -31,7 +30,6 @@ def get_by_id(student_id=None, subject=None):
     student['student_id'] = student_id
     print(student)
     return student
-
 
 def delete(student_id=None):
     student = student_db.get(doc_id=int(student_id))
