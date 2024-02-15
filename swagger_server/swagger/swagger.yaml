@@ -26,8 +26,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: number
-          format: integer
+          type: string
       responses:
         "200":
           description: successful operation
@@ -52,8 +51,7 @@ paths:
         style: simple
         explode: false
         schema:
-          type: number
-          format: integer
+          type: string
       responses:
         "200":
           description: Succesfully removed student
@@ -79,8 +77,7 @@ paths:
           content:
             application/json:
               schema:
-                type: number
-                format: integer
+                type: string
                 x-content-type: application/json
         "400":
           description: "invalid input, object invalid"
@@ -96,7 +93,7 @@ components:
       type: object
       properties:
         student_id:
-          type: integer
+          type: string
           description: Unique student identifier
         first_name:
           type: string
@@ -110,7 +107,6 @@ components:
           items:
             $ref: '#/components/schemas/GradeRecord'
       example:
-        student_id: 12345
         first_name: Ron
         last_name: Wisly
         gradeRecords:

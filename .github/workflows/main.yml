@@ -4,7 +4,6 @@ env:
   IMAGE_NAME: student_service
   REPO_NAME: danielv27
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
