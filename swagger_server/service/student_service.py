@@ -10,18 +10,26 @@ MONGO_URI = os.environ.get("MONGO_URI")
 client = MongoClient(MONGO_URI)
 db = client.db
 students = db.students
-student_counter = 0
+counts = db.counts
 
 
 def add(student=None):
     if students.find_one({"first_name": student.first_name, "last_name": student.last_name}):
         return 'user already exists', 409
 
-    student_counter += 1
-    student['student_id'] = student_counter
+    count = 0
+    count_object = counts.find_one({"name": "student_count"})
+    if not count_object:
+        counts.insert_one({"name": "student_count", "value": 0})
+        count = 1
+    else:
+        count = count_object.get("value") + 1
+        counts.update_one({"name": "student_count"}, {"$set": {"value": count}})
+
+    student.student_id = count
 
     students.insert_one(student.to_dict())
-    return student_counter, 200
+    return count, 200
 
 def get_by_id(student_id=None, subject=None):
     student = students.find_one({"student_id": student_id})
