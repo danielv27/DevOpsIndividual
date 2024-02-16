@@ -1,12 +1,15 @@
 version: '3'
 services:
   student_service:
-    image: danielv27/student_service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: "${REPO_NAME}/${IMAGE_NAME}:latest"
     restart: unless-stopped
     depends_on:
       - mongo
     environment:
-      MONGO_URI: mongodb://mongo
+      MONGO_URI: mongodb://mongo:27017
     ports:
       - "8080:8080"
 
