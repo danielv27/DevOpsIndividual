@@ -5,7 +5,9 @@ import json
 from pymongo import MongoClient
 from bson import ObjectId
 
-client = MongoClient("mongodb://mongo")
+MONGO_URI = os.environ.get("MONGO_URI")
+
+client = MongoClient(MONGO_URI)
 db = client.db
 students = db.students
 student_counter = 0
