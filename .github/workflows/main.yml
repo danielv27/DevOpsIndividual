@@ -34,7 +34,7 @@ jobs:
 
     - name: Push image to docker hub Container Registry
       run: | 
-          docker push $REPO_NAME/$IMAGE_NAME
+          docker push danielv27/student_service
     - name: Build and push multi-arch docker image
       run: |
         docker buildx create --name multiarch --driver docker-container --bootstrap --use
