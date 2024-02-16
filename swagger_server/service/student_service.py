@@ -19,7 +19,7 @@ def add(student=None):
     student['student_id'] = student_counter
 
     students.insert_one(student.to_dict())
-    return student_counter
+    return student_counter, 200
 
 def get_by_id(student_id=None, subject=None):
     student = students.find_one({"student_id": student_id})
@@ -27,11 +27,11 @@ def get_by_id(student_id=None, subject=None):
         return 'user not found', 404
     
     del student['_id']
-    return student
+    return student, 200
 
 def delete(student_id=None):
     student = students.find_one({"student_id": student_id})
     if not student:
         return 'not found', 404
     students.delete_one({"student_id": student_id})
-    return student_id
+    return student_id, 200
